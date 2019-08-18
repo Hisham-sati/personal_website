@@ -1,0 +1,41 @@
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://thosgood.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+
+title: Tim Hosgood
+email: timhosgood@gmail.com
+
+github_username:  thosgood
+twitter_username: tjohnhos
+disqus:
+  shortname: thosgood
+arxiv_username: hosgood_t_1
+orcid_id: 0000-0003-4580-0741
+matrix_username: thosgood:matrix.org
+
+pagination:
+  enabled: true
+  debug: false
+  sort_reverse: true
+  per_page: 4
+  permalink: '/page-:num.html'
+  limit: 0
+  trail: 
+    before: 2
+    after: 2
+
+excerpt_separator: <!--more-->
+
+minima:
+  date_format: "%e %B, %Y"
+
+markdown: kramdown
+
+plugins_dir: ./_plugins
+plugins:
+  - jekyll-paginate-v2
+  - jekyll-feed
+  
+jekyll_get:
+  - data: github
+    json: 'https://api.github.com/users/thosgood/repos'
+    cache: false

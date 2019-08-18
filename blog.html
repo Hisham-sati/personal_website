@@ -1,0 +1,74 @@
+---
+title: Blog
+layout: page
+permalink: /blog/
+pagination:
+  enabled: true
+---
+
+<div class="fixed">
+
+  <p class="page-description">This blog is a collection of reading notes of things that I try to learn. Often they are nothing more than summaries of various pages on the nLab, but collated, (over)simplified, and reordered to be more easily understood by, e.g., me. There will almost certainly be mistakes and bad viewpoints, so <i>caveat lector</i>.</p>
+
+  <ul class="post-list">
+
+    {% for post in paginator.posts %}
+      <li>
+
+        <div class="post-list-heading">
+
+          {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+
+          <h2><a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}{% if post.part != nil %} ({{ post.part | escape }}){% endif %}</a></h2>
+
+          <span class="post-meta">{{ post.date | date: date_format }}</span>
+
+        </div>
+
+
+        {{ post.excerpt }}
+
+
+        <h4><a href="{{ post.url | relative_url }}">Continue reading &#8702;</a></h4>
+
+        {% if post.tags != "" %}
+          <ul class="tag-list">
+
+            {% for tag in post.tags %}
+              <li><a href="/tag/{{ tag }}"><nobr>{{ tag }}</nobr></a></li>
+            {% endfor %}
+
+          </ul>
+        {% endif %}
+
+      </li>
+    {% endfor %}
+
+  </ul>
+
+
+  <div class="pagination">
+
+    {% if paginator.page == 1 %}
+      <span class="page-nav-inactive">1</span>
+    {% else %}
+      <a href="{{ "/blog" | relative_url }}" class="page-nav">1</a>
+    {% endif %}
+        
+    {% for num in (2..paginator.total_pages) %}
+      {% if num == paginator.page %}
+        <span class="page-nav-inactive">{{ num }}</span>
+      {% else %}
+        <a href="{{ num | prepend:'/blog/page-' | relative_url }}" class="page-nav">{{ num }}</a>
+      {% endif %}
+    {% endfor %}
+
+  </div>
+
+
+  {% include archive.html %}
+  
+
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
+
+</div>
